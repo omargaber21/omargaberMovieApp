@@ -62,16 +62,18 @@ Button btnSearch;
          MoviesAdapter moviesAdapter=new MoviesAdapter();
          recyclerView.setLayoutManager(new GridLayoutManager(this,2));
          recyclerView.setAdapter(moviesAdapter);
-         moviesAdapter.setListener(listener);
          listener=new MoviesAdapter.RecyclerViewOnClickListener() {
              @Override
              public void onClick(View view, int position) {
                  Intent intent=new Intent(getApplicationContext(),SecondActivity.class);
                  intent.putExtra("overview",response.getResults().get(position).getOverview());
+                 intent.putExtra("background",response.getResults().get(position).getBackdrop_path());
+                 intent.putExtra("poster",response.getResults().get(position).getPoster_path());
+                 intent.putExtra("moviename",response.getResults().get(position).getTitle());
                  startActivity(intent);
-
              }
          };
+        moviesAdapter.setListener(listener);
          moviesViewModel.moviesResponseMutableLiveData.observe(this, new Observer<MoviesResponse>() {
              @Override
              public void onChanged(MoviesResponse moviesResponse) {

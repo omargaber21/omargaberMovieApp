@@ -20,7 +20,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MoviesViewHolder> {
     private List<MoviesResponseResults> moviesResponseResults =new ArrayList<>();
-    private final String IMAGE_BASE_URL="https://image.tmdb.org/t/p/w500/";
 
     private RecyclerViewOnClickListener listener;
     public void setListener(RecyclerViewOnClickListener listener) {
@@ -37,7 +36,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MoviesView
     @Override
     public void onBindViewHolder(@NonNull MoviesViewHolder holder, int position) {
     holder.movieNameTV.setText(moviesResponseResults.get(position).getTitle());
-    String imageUrl=IMAGE_BASE_URL+moviesResponseResults.get(position).getPoster_path();
+    String imageUrl=MoviesClient.getInstance().IMAGE_BASE_URL+moviesResponseResults.get(position).getPoster_path();
         Glide.with(holder.movieIV.getContext()).load(imageUrl).into(holder.movieIV);
     }
 
@@ -61,9 +60,10 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MoviesView
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    System.out.println("View is"+view);
-                    System.out.println("Position is"+getAdapterPosition());
-                    listener.onClick(view,getAdapterPosition());
+                    int position=getAdapterPosition();
+                    if(listener!=null && position!=RecyclerView.NO_POSITION) {
+                        listener.onClick(view, position);
+                    }
                 }
             });
         }
