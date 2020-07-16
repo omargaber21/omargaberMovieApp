@@ -3,35 +3,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
     android:orientation="vertical"
     tools:context=".ui.MainActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="6"
+        android:layout_weight="7"
         android:id="@+id/recyclerview" />
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="0dp"
-    android:layout_weight="1"
-    android:layout_marginTop="10dp"
-    android:orientation="horizontal">
+
 
     <EditText
         android:id="@+id/searchEditText"
-        android:layout_width="325dp"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:hint="Enter Movie Name"
+        android:textColorHint="#FFF"
+        android:layout_margin="5dp"
+        android:textColor="#FFF"
         android:layout_height="35dp"
-        android:layout_gravity="left"
         />
 
-    <Button
-        android:id="@+id/btnSearch"
-        android:layout_width="wrap_content"
-        android:layout_height="35dp"
-        android:layout_gravity="right"
-        android:text="Search" />
-</LinearLayout>
 
 
 </LinearLayout>

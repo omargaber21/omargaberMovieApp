@@ -39,7 +39,6 @@ Button btnSearch;
         setContentView(R.layout.activity_main);
          recyclerView=findViewById(R.id.recyclerview);
          searchEDT=findViewById(R.id.searchEditText);
-         btnSearch=findViewById(R.id.btnSearch);
          moviesViewModel =new ViewModelProvider(this).get(MoviesViewModel.class);
          searchEDT.addTextChangedListener(new TextWatcher() {
              @Override
