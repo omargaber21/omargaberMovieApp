@@ -8,8 +8,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.myapplication.R;
-import com.example.myapplication.data.MoviesClient;
-import com.example.myapplication.model.MoviesResponse;
+import com.example.myapplication.data.MoviesInterface;
 import com.example.myapplication.model.MoviesResponseResults;
 
 import java.util.ArrayList;
@@ -35,8 +34,15 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MoviesView
 
     @Override
     public void onBindViewHolder(@NonNull MoviesViewHolder holder, int position) {
-    holder.movieNameTV.setText(moviesResponseResults.get(position).getTitle());
-    String imageUrl=MoviesClient.getInstance().IMAGE_BASE_URL+moviesResponseResults.get(position).getPoster_path();
+        String movieName=moviesResponseResults.get(position).getTitle();
+        if(movieName.length()>=35){
+            movieName=movieName.substring(0,35)+"...";
+        }
+    holder.movieNameTV.setText(movieName);
+    holder.ratingTV.setText(String.valueOf(moviesResponseResults.get(position).getVote_average()));
+    String s=moviesResponseResults.get(position).getRelease_date().substring(0,4);
+    holder.dateTV.setText("("+s+")");
+    String imageUrl= MoviesInterface.IMAGE_BASE_URL +moviesResponseResults.get(position).getPoster_path();
         Glide.with(holder.movieIV.getContext()).load(imageUrl).into(holder.movieIV);
     }
 
@@ -53,10 +59,14 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MoviesView
     public class MoviesViewHolder extends RecyclerView.ViewHolder{
         TextView movieNameTV;
         ImageView movieIV;
+        TextView ratingTV;
+        TextView dateTV;
         public MoviesViewHolder(View itemView) {
             super(itemView);
             movieNameTV=itemView.findViewById(R.id.movieNameTV);
             movieIV=itemView.findViewById(R.id.movieIV);
+            ratingTV=itemView.findViewById(R.id.ratingTV);
+            dateTV=itemView.findViewById(R.id.textViewDate);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

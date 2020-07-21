@@ -1,8 +1,9 @@
 package com.example.myapplication.model;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class MoviesResponseResults {
+public class MoviesResponseResults implements Serializable {
     private float popularity;
     private int vote_count;
     private boolean video;

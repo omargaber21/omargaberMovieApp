@@ -1,8 +1,9 @@
 package com.example.myapplication.model;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class MoviesResponse {
+public class MoviesResponse implements Serializable {
 private int page;
 private int total_results;
 private int total_pages;

@@ -1,21 +1,23 @@
 package com.example.myapplication.data;
 
+import com.example.myapplication.model.MovieDetailsModel;
+import com.example.myapplication.model.MovieTrailers;
 import com.example.myapplication.model.MoviesResponse;
+import com.example.myapplication.model.NowPlayingMovies;
+import com.example.myapplication.model.PersonDetails;
 
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MoviesClient {
-    private static final String API_KEY="c409e6f8949890aaadf35a51c1a2c9c4";
-    private static final String BASE_URL="https://api.themoviedb.org/3/";
-    public final String IMAGE_BASE_URL="https://image.tmdb.org/t/p/w500/";
+
 
     private static MoviesClient INSTANCE;
     private MoviesInterface moviesInterface;
     public MoviesClient(){
     Retrofit retrofit=new Retrofit.Builder()
-            .baseUrl(BASE_URL)
+            .baseUrl(moviesInterface.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build();
     moviesInterface=retrofit.create(MoviesInterface.class);
@@ -28,9 +30,32 @@ public class MoviesClient {
   }
 
    public Call<MoviesResponse> getMovies(String movieName){
-       System.out.println("Key is"+API_KEY);
-   return moviesInterface.getMovies(API_KEY,movieName);
+   return moviesInterface.getMovies(moviesInterface.API_KEY,movieName);
 
    }
 
+   public Call<MovieTrailers> getTrailers(int movieId){
+        return moviesInterface.getTrailers(movieId,moviesInterface.API_KEY);
+   }
+   public Call<NowPlayingMovies> getNowPlaying(){
+        return moviesInterface.getNowPlaying(moviesInterface.API_KEY);
+   }
+   public Call<MoviesResponse> getPopular(){
+        return moviesInterface.getPopular(moviesInterface.API_KEY);
+   }
+    public Call<MoviesResponse> getSimilar(int movieId){
+        return moviesInterface.getSimilar(movieId,moviesInterface.API_KEY);
+    }
+    public Call<MoviesResponse> getMovieByGenre(int genre){
+        return moviesInterface.getMovieByGenre(moviesInterface.API_KEY,genre);
+    }
+    public Call<MovieDetailsModel> getMovieDetails(int movie_id){
+        return moviesInterface.getMovieDetails(movie_id,moviesInterface.API_KEY,"credits");
+    }
+    public Call<MoviesResponse> getCastKnownFor(int cast_id){
+        return moviesInterface.getCastKnownFor("popularity.desc",cast_id,moviesInterface.API_KEY);
+    }
+    public Call<PersonDetails> getPersonDetails(int person_id){
+        return moviesInterface.getPersonDetails(person_id,moviesInterface.API_KEY);
+    }
 }

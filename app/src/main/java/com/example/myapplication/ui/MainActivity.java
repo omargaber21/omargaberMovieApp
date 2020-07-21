@@ -1,45 +1,42 @@
 package com.example.myapplication.ui;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.example.myapplication.R;
-import com.example.myapplication.data.MoviesClient;
 import com.example.myapplication.model.MoviesResponse;
-import com.example.myapplication.model.MoviesResponseResults;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class MainActivity extends AppCompatActivity {
 MoviesViewModel moviesViewModel;
 RecyclerView recyclerView;
 EditText searchEDT;
+
 MoviesAdapter.RecyclerViewOnClickListener listener;
     String movieName;
-    MoviesResponse response;
-Button btnSearch;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        try
+        {
+            this.getSupportActionBar().hide();
+        }
+        catch (NullPointerException e){}
         setContentView(R.layout.activity_main);
          recyclerView=findViewById(R.id.recyclerview);
          searchEDT=findViewById(R.id.searchEditText);
          moviesViewModel =new ViewModelProvider(this).get(MoviesViewModel.class);
+        moviesViewModel.getMovies("s");
          searchEDT.addTextChangedListener(new TextWatcher() {
              @Override
              public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -55,35 +52,37 @@ Button btnSearch;
              public void afterTextChanged(Editable editable) {
              movieName=searchEDT.getText().toString();
              moviesViewModel.getMovies(movieName);
-
              }
          });
          MoviesAdapter moviesAdapter=new MoviesAdapter();
-         recyclerView.setLayoutManager(new GridLayoutManager(this,2));
+         if(this.getResources().getConfiguration().orientation== Configuration.ORIENTATION_PORTRAIT){
+             recyclerView.setLayoutManager(new GridLayoutManager(this,2));
+         }else{
+             recyclerView.setLayoutManager(new GridLayoutManager(this,3));
+         }
+
          recyclerView.setAdapter(moviesAdapter);
-         listener=new MoviesAdapter.RecyclerViewOnClickListener() {
-             @Override
-             public void onClick(View view, int position) {
-                 Intent intent=new Intent(getApplicationContext(),SecondActivity.class);
-                 intent.putExtra("overview",response.getResults().get(position).getOverview());
-                 intent.putExtra("background",response.getResults().get(position).getBackdrop_path());
-                 intent.putExtra("poster",response.getResults().get(position).getPoster_path());
-                 intent.putExtra("moviename",response.getResults().get(position).getTitle());
-                 startActivity(intent);
-             }
-         };
-        moviesAdapter.setListener(listener);
+
+
          moviesViewModel.moviesResponseMutableLiveData.observe(this, new Observer<MoviesResponse>() {
              @Override
              public void onChanged(MoviesResponse moviesResponse) {
                  if(moviesResponse==null){
                      return;
                  }
-                 response=moviesResponse;
-             moviesAdapter.setList(response.getResults());
-
-             System.out.println("Succs Ope");
+                 listener=new MoviesAdapter.RecyclerViewOnClickListener() {
+                     @Override
+                     public void onClick(View view, int position) {
+                         Intent intent=new Intent(getApplicationContext(), MovieDetails.class);
+                         intent.putExtra("movie_id",moviesResponse.getResults().get(position).getId());
+                         startActivity(intent);
+                     }
+                 };
+             moviesAdapter.setList(moviesResponse.getResults());
+             moviesAdapter.setListener(listener);
              }
          });
+
+
     }
 }

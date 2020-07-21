@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    tools:context=".ui.HomeActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+<TextView
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    android:id="@+id/firstTextView"
+    android:layout_marginTop="10dp"
+    android:textSize="18sp"
+    android:layout_marginStart="10dp"
+    android:text="What are you in the mood for?"
+    android:textColor="#FFF"
+    />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Browse by genre and discover something new"
+            android:textColor="#FFF"
+            android:textSize="14sp"
+            android:layout_marginStart="10dp"
+            android:id="@+id/secondTextView"
+            app:layout_constraintTop_toBottomOf="@id/firstTextView"            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            />
+<HorizontalScrollView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:id="@+id/movieByGenresScrollView"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/secondTextView">
+    <com.marozzi.segmentedtab.SegmentedGroup
+        android:id="@+id/group_one"
+        android:scrollbarAlwaysDrawHorizontalTrack="true"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:sg_corner_color="@android:color/holo_red_light"
+        app:sg_corner_size="1dp"
+        app:sg_corner_radius="20dp"
+        app:sg_background_color="@android:color/transparent"
+        app:sg_background_color_selected="@color/colorPrimary"
+        app:sg_text_color="@android:color/darker_gray"
+        app:sg_text_color_selected="@android:color/holo_red_dark">
+        <com.marozzi.segmentedtab.SegmentedTab
+            android:id="@+id/tab_Action"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Action" />
+        <com.marozzi.segmentedtab.SegmentedTab
+            android:id="@+id/tab_Drama"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Drama" />
+        <com.marozzi.segmentedtab.SegmentedTab
+            android:id="@+id/tab_Science_Fiction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" Science Fiction " />
+        <com.marozzi.segmentedtab.SegmentedTab
+            android:id="@+id/tab_Adventure"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" Adventure " />
+        <com.marozzi.segmentedtab.SegmentedTab
+            android:id="@+id/tab_Animation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Animation" />
+        <com.marozzi.segmentedtab.SegmentedTab
+            android:id="@+id/tab_Comedy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Comedy" />
+        <com.marozzi.segmentedtab.SegmentedTab
+            android:id="@+id/tab_Crime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Crime" />
+        <com.marozzi.segmentedtab.SegmentedTab
+            android:id="@+id/tab_Documentary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" Documentary " />
+        <com.marozzi.segmentedtab.SegmentedTab
+            android:id="@+id/tab_Family"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Family" />
+        <com.marozzi.segmentedtab.SegmentedTab
+            android:id="@+id/tab_Fantasy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fantasy" />
+        <com.marozzi.segmentedtab.SegmentedTab
+            android:id="@+id/tab_History"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="History" />
+        <com.marozzi.segmentedtab.SegmentedTab
+            android:id="@+id/tab_Horror"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Horror" />
+        <com.marozzi.segmentedtab.SegmentedTab
+            android:id="@+id/tab_Music"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Music" />
+        <com.marozzi.segmentedtab.SegmentedTab
+            android:id="@+id/tab_Mystery"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mystery" />
+        <com.marozzi.segmentedtab.SegmentedTab
+            android:id="@+id/tab_Romance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Romance" />
+        <com.marozzi.segmentedtab.SegmentedTab
+            android:id="@+id/tab_TV_Movie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" TV Movie " />
+        <com.marozzi.segmentedtab.SegmentedTab
+            android:id="@+id/tab_Thriller"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Thriller" />
+        <com.marozzi.segmentedtab.SegmentedTab
+            android:id="@+id/tab_War"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="War" />
+        <com.marozzi.segmentedtab.SegmentedTab
+            android:id="@+id/tab_Western"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Western" />
+    </com.marozzi.segmentedtab.SegmentedGroup>
+</HorizontalScrollView>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerMovieByGenre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:scrollbars="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/movieByGenresScrollView">
+
+        </androidx.recyclerview.widget.RecyclerView>
+        <TextView
+            android:id="@+id/textViewMostPopular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Most Popular"
+            android:textColor="#FFF"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.045"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/recyclerMovieByGenre" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewPopular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:scrollbars="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewMostPopular">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <TextView
+            android:id="@+id/textViewNowPlaying"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Now Playing"
+            android:textColor="#FFF"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.045"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recyclerViewPopular" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewNowPlaying"
+            android:layout_width="wrap_content"
+            android:scrollbars="horizontal"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewNowPlaying" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
