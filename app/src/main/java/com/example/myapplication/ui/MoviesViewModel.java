@@ -23,7 +23,6 @@ public class MoviesViewModel extends ViewModel {
 
             @Override
             public void onFailure(Call<MoviesResponse> call, Throwable t) {
-                System.out.println("OnResponse Fail"+t);
             }
         });
     }
@@ -37,7 +36,6 @@ public class MoviesViewModel extends ViewModel {
 
             @Override
             public void onFailure(Call<NowPlayingMovies> call, Throwable t) {
-                System.out.println("Fail "+t);
 
             }
         });

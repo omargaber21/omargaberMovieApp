@@ -2,15 +2,19 @@ package com.example.myapplication.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.example.myapplication.R;
 import com.example.myapplication.model.MoviesResponse;
 import com.example.myapplication.model.NowPlayingMovies;
+import com.google.firebase.auth.FirebaseAuth;
 import com.marozzi.segmentedtab.SegmentedGroup;
 import com.marozzi.segmentedtab.SegmentedTab;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -20,17 +24,19 @@ public class HomeActivity extends AppCompatActivity {
 RecyclerView mostPopular,nowPlaying,moviesByGenre;
 MoviesAdapter.RecyclerViewOnClickListener listener;
 MoviesViewModel moviesViewModel;
+Toolbar toolbar;
 SegmentedGroup segmentedGroup;
     MoviesAdapter mostPopularAdapter;
     MoviesAdapter nowPlayingAdapter;
     MoviesAdapter moviesByGenreAdapter;
+    FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        try
-        { this.getSupportActionBar().hide(); }
-        catch (NullPointerException e){}
         setContentView(R.layout.activity_home);
+        toolbar=findViewById(R.id.toolbar);
+        toolbar.setTitle("MoviesApp");
+        setSupportActionBar(toolbar);
         mostPopular=findViewById(R.id.recyclerViewPopular);
         nowPlaying=findViewById(R.id.recyclerViewNowPlaying);
         moviesByGenre=findViewById(R.id.recyclerMovieByGenre);
@@ -42,17 +48,20 @@ SegmentedGroup segmentedGroup;
         nowPlayingAdapter=new MoviesAdapter();
         moviesByGenreAdapter=new MoviesAdapter();
         mostPopular.setAdapter(mostPopularAdapter);
+        nowPlaying.setAdapter(nowPlayingAdapter);
         moviesByGenre.setAdapter(moviesByGenreAdapter);
         moviesViewModel=new ViewModelProvider(this).get(MoviesViewModel.class);
         moviesViewModel.getNowPlaying();
         moviesViewModel.getPopular();
-        moviesViewModel.getMovieByGenre(28);
+        mAuth=FirebaseAuth.getInstance();
+
+        //show Action movies at Home, untill user change it
+        moviesViewModel.getMovieByGenre(14);
         getMoviesByGenre();
         moviesViewModel.nowPlayingMutableLiveData.observe(this, new Observer<NowPlayingMovies>() {
             @Override
             public void onChanged(NowPlayingMovies moviesResponseResults) {
                 nowPlayingAdapter.setList(moviesResponseResults.getResults());
-                nowPlaying.setAdapter(nowPlayingAdapter);
                 listener=new MoviesAdapter.RecyclerViewOnClickListener() {
                     @Override
                     public void onClick(View view, int position) {
@@ -143,5 +152,32 @@ SegmentedGroup segmentedGroup;
             }
         }
     });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.toolbar_menu,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.app_bar_search:Intent intent=new Intent(getApplicationContext(), SearchActivity.class);
+            getApplicationContext().startActivity(intent);
+            break;
+            case R.id.app_bar_account:mAuth.signOut();
+                Intent intent2=new Intent(getApplicationContext(),LoginScreen.class);
+                startActivity(intent2);
+            break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finishAffinity();
     }
 }

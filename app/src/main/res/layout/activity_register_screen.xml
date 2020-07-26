@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.LoginScreen">
+
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/passwordTIET"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/register_button_background"
+        android:text="@string/register"
+        android:id="@+id/btnregister"
+        android:textColor="#FFF"
+        android:textSize="18sp"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/joker_register_background" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha=".5"
+        android:background="@color/colorPrimary" />
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="serif-monospace"
+        android:gravity="center"
+        android:text="@string/join_us"
+        android:layout_above="@id/usernameTIET"
+        android:textColor="@color/colorAccent"
+        android:textSize="40sp"
+        android:textStyle="bold" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/usernameTIET"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="70dp"
+        android:layout_marginStart="70dp"
+        android:background="@drawable/login_user_pass_background"
+        android:hint="@string/enter_your_email"
+        android:padding="16dp"
+        android:textColor="#FFF"
+        android:textColorHint="#FFF" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/passwordTIET"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/usernameTIET"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="70dp"
+        android:background="@drawable/login_user_pass_background"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        android:padding="16dp"
+        android:textColor="#FFF"
+        android:textColorHint="#FFF" />
+
+</RelativeLayout>

@@ -46,7 +46,7 @@ public class MovieDetailsModel {
     private double popularity;
     private String poster_path;
     private String release_date;
-    private int revenue;
+    private long revenue;
     private int runtime;
     private String status;
     private String tagline;
@@ -164,11 +164,11 @@ public class MovieDetailsModel {
         this.release_date = release_date;
     }
 
-    public int getRevenue() {
+    public long getRevenue() {
         return revenue;
     }
 
-    public void setRevenue(int revenue) {
+    public void setRevenue(long revenue) {
         this.revenue = revenue;
     }
 

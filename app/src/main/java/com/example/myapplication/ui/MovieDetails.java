@@ -59,7 +59,6 @@ public class MovieDetails extends AppCompatActivity {
         Bundle extras=getIntent().getExtras();
         if(extras!=null){
             int movie_id=extras.getInt("movie_id");
-            System.out.println("movie"+movie_id);
             movieDetailsViewModel.getMovieDetails(movie_id);
             movieDetailsViewModel.getSimilar(movie_id);
         }
@@ -126,12 +125,13 @@ public class MovieDetails extends AppCompatActivity {
                     Glide.with(getApplicationContext()).load(posterimageUrl).into(backgroundImage);
                 }
                 Glide.with(getApplicationContext()).load(posterimageUrl).into(posterImageView);
+                if(movieDetailsModel.getGenres().size()>=1){
                 StringBuilder s=new StringBuilder();
                 for(int i = 0; i< movieDetailsModel.getGenres().size(); i++){
                     s.append(movieDetailsModel.getGenres().get(i).getName()+",");
                 }
                 String genres=s.substring(0,s.length()-1);
-                genresTV.setText(genres);
+                genresTV.setText(genres);}
             }
         });
     }

@@ -1,249 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    android:orientation="vertical"
-    tools:context=".ui.MovieDetails">
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
+    tools:context=".ui.HomeActivity">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
+
+    <com.facebook.login.widget.LoginButton
+        android:id="@+id/login_button"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        >
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout"
-            android:layout_width="0dp"
-            android:layout_height="325dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:id="@+id/backgroundIMG"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="0"
-                android:scaleType="centerCrop"
-                android:src="@color/colorPrimary"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
-
-            <ImageView
-                android:id="@+id/insideposterImageView"
-                android:layout_width="150dp"
-                android:layout_height="280dp"
-                android:src="@color/colorPrimary"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.061"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.73" />
-
-            <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="0dp"
-                android:layout_height="153dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.333"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0"
-                app:srcCompat="@drawable/gradien_bg" />
-
-            <TextView
-                android:id="@+id/movieNameTV"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="150dp"
-                android:gravity="center_horizontal|fill_horizontal"
-                android:textColor="#FFF"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@id/genresTV"
-                app:layout_constraintEnd_toEndOf="@id/backgroundIMG"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@id/insideposterImageView"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/genresTV"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="24dp"
-                android:gravity="start|fill_horizontal"
-                android:textColor="#ffaa00"
-                android:textSize="18sp"
-                app:layout_constraintBottom_toTopOf="@id/textViewDate"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.2"
-                app:layout_constraintStart_toEndOf="@+id/insideposterImageView"
-                app:layout_constraintTop_toBottomOf="@id/movieNameTV" />
-
-            <TextView
-                android:id="@+id/textViewDate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="fill_horizontal"
-                android:textColor="#FFF"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.2"
-                app:layout_constraintStart_toEndOf="@+id/insideposterImageView"
-                app:layout_constraintTop_toBottomOf="@+id/genresTV" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <LinearLayout
-            android:id="@+id/linearLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
-
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginStart="10dp"
-                android:gravity="center"
-                android:layout_gravity="center"
-                android:text="Watch Trailer"
-                android:textColor="#FFF"
-                android:layout_weight="1"
-                android:textSize="24sp" />
-
-
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/floatingActionButton"
-                style="@style/Widget.Design.FloatingActionButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/colorPrimary"
-                app:borderWidth="0dp"
-                app:fabSize="normal"
-                android:layout_weight="1"
-                app:srcCompat="@android:drawable/ic_media_play" />
-            <TextView
-                android:id="@+id/textViewDirectorBase"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginStart="10dp"
-                android:gravity="center"
-                android:text="@string/director"
-                android:layout_weight="1"
-                android:textColor="#FFF"
-                android:textSize="14sp" />
-            <TextView
-                android:id="@+id/textViewDirectorName"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:layout_weight="1"
-                android:textColor="#FFF"
-                android:textSize="12sp" />
-        </LinearLayout>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textViewTagLine"
-            app:layout_constraintHorizontal_bias="0"
-            android:layout_marginLeft="10dp"
-            android:textColor="#bdbdbd"
-            android:layout_marginTop="10dp"
-            android:text="The Law Has Limits. He Does Not"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-            />
-        <TextView
-            android:id="@+id/overviewBaseText"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:text="@string/overview"
-            android:textColor="#FFF"
-            android:textSize="18sp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewTagLine"
-            app:layout_constraintVertical_bias="0.365" />
-        <TextView
-            android:id="@+id/overview"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:text="Overview"
-            android:textColor="#FFF"
-            android:layout_marginTop="10dp"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/overviewBaseText"
-            app:layout_constraintVertical_bias="0.365" />
-        <TextView
-            android:id="@+id/textViewCast"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/cast"
-            android:textColor="#FFF"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.045"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/overview" />
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewCast"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:scrollbars="horizontal"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewCast">
-        </androidx.recyclerview.widget.RecyclerView>
-        <TextView
-            android:id="@+id/textViewSimilar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/similar_to"
-            android:textColor="#FFF"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.045"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/recyclerViewCast" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewSimilar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:scrollbars="horizontal"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewSimilar">
-        </androidx.recyclerview.widget.RecyclerView>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
-</ScrollView>
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="990dp"
+        android:layout_marginEnd="219dp"
+        android:layout_marginBottom="674dp" />
+</RelativeLayout>

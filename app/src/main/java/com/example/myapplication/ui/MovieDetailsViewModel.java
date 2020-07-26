@@ -46,12 +46,10 @@ public class MovieDetailsViewModel extends ViewModel {
             @Override
             public void onResponse(Call<MovieDetailsModel> call, Response<MovieDetailsModel> response) {
                 movieDetailsMutableLiveData.setValue(response.body());
-                System.out.println("wqe");
             }
 
             @Override
             public void onFailure(Call<MovieDetailsModel> call, Throwable t) {
-                System.out.println("wqe"+t);
 
             }
         });
