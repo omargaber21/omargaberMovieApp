@@ -48,13 +48,13 @@ public class Repository {
         }
     }
 
-    public void register(Activity activity, String email, String password) {
+    public void register(Activity activity, String email, String password,User user) {
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener( new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
             if(task.isSuccessful()){
-
                 Intent intent=new Intent(activity,HomeActivity.class);
+                addUser(user);
                 activity.startActivity(intent);
                 activity.finish();
                 Toast.makeText(activity,"Congratulations , You Are Now One Of US :)",Toast.LENGTH_SHORT).show();

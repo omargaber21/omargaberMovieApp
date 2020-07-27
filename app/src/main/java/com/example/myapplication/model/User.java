@@ -3,7 +3,7 @@ package com.example.myapplication.model;
 public class User {
     private String email;
     private String username;
-    private String imageUrl;
+    private String phone;
 
     public String getEmail() {
         return email;
@@ -21,11 +21,11 @@ public class User {
         this.username = username;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }

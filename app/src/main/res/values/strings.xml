@@ -17,5 +17,7 @@
     <string name="login">Login</string>
     <string name="facebook_app_id">214768969809757</string>
     <string name="fb_login_protocol_scheme">fb214768969809757</string>
+    <string name="enter_your_name">Enter Your Name...</string>
+    <string name="enter_your_phone_number">Enter Your Phone Number...</string>
 
 </resources>

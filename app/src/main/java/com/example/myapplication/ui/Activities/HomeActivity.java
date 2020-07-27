@@ -170,8 +170,10 @@ SegmentedGroup segmentedGroup;
             getApplicationContext().startActivity(intent);
             break;
             case R.id.app_bar_account:mAuth.signOut();
-                Intent intent2=new Intent(getApplicationContext(),LoginScreen.class);
+                Intent intent2=new Intent(HomeActivity.this,LoginScreen.class);
                 startActivity(intent2);
+                finish();
+
             break;
         }
         return super.onOptionsItemSelected(item);

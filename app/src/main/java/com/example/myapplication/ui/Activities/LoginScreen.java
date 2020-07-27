@@ -48,4 +48,10 @@ public class LoginScreen extends AppCompatActivity {
             finish();
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finishAffinity();
+    }
 }
