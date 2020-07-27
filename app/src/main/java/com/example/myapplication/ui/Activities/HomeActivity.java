@@ -1,4 +1,4 @@
-package com.example.myapplication.ui;
+package com.example.myapplication.ui.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +9,8 @@ import android.view.View;
 import com.example.myapplication.R;
 import com.example.myapplication.model.MoviesResponse;
 import com.example.myapplication.model.NowPlayingMovies;
+import com.example.myapplication.ui.Adapters.MoviesAdapter;
+import com.example.myapplication.ui.ViewModels.MoviesViewModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.marozzi.segmentedtab.SegmentedGroup;
 import com.marozzi.segmentedtab.SegmentedTab;

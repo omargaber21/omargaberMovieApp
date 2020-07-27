@@ -1,4 +1,4 @@
-package com.example.myapplication.ui;
+package com.example.myapplication.ui.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +11,8 @@ import com.example.myapplication.R;
 import com.example.myapplication.data.MoviesInterface;
 import com.example.myapplication.model.MoviesResponse;
 import com.example.myapplication.model.PersonDetails;
+import com.example.myapplication.ui.Adapters.MoviesAdapter;
+import com.example.myapplication.ui.ViewModels.PersonDetailsViewModel;
 import com.ms.square.android.expandabletextview.ExpandableTextView;
 
 import androidx.appcompat.app.AppCompatActivity;

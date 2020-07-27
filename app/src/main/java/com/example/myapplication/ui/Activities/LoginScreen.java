@@ -1,10 +1,11 @@
-package com.example.myapplication.ui;
+package com.example.myapplication.ui.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
 import com.example.myapplication.R;
+import com.example.myapplication.ui.ViewModels.LoginViewModel;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;

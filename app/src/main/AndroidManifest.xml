@@ -9,24 +9,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.RegisterScreen"></activity>
-        <activity android:name=".ui.LoginScreen" >
+        <activity android:name=".ui.Activities.RegisterScreen"></activity>
+        <activity android:name=".ui.Activities.LoginScreen" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.PersonActivity" />
-        <activity android:name=".ui.HomeActivity"
-            android:parentActivityName=".ui.LoginScreen">
+        <activity android:name=".ui.Activities.PersonActivity" />
+        <activity android:name=".ui.Activities.HomeActivity"
+            android:parentActivityName=".ui.Activities.LoginScreen">
 
         </activity>
-        <activity android:name=".ui.MovieTrailerActivity" />
-        <activity android:name=".ui.MovieDetails" />
+        <activity android:name=".ui.Activities.MovieTrailerActivity" />
+        <activity android:name=".ui.Activities.MovieDetails" />
         <activity
-            android:name=".ui.SearchActivity"
-            android:parentActivityName=".ui.HomeActivity" />
+            android:name=".ui.Activities.SearchActivity"
+            android:parentActivityName=".ui.Activities.HomeActivity" />
         <meta-data android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id"/>
 

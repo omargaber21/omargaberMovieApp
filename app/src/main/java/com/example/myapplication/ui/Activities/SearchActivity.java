@@ -1,4 +1,4 @@
-package com.example.myapplication.ui;
+package com.example.myapplication.ui.Activities;
 
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -9,6 +9,10 @@ import android.view.View;
 
 import com.example.myapplication.R;
 import com.example.myapplication.model.MoviesResponse;
+import com.example.myapplication.ui.Adapters.MoviesAdapter;
+import com.example.myapplication.ui.ViewModels.MoviesViewModel;
+
+import java.util.concurrent.TimeUnit;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
@@ -17,11 +21,17 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import io.reactivex.rxjava3.annotations.NonNull;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.ObservableEmitter;
+import io.reactivex.rxjava3.core.ObservableOnSubscribe;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
+import io.reactivex.rxjava3.disposables.Disposable;
 
 public class SearchActivity extends AppCompatActivity {
 MoviesViewModel moviesViewModel;
 RecyclerView recyclerView;
-
+CompositeDisposable compositeDisposable=new CompositeDisposable();
 MoviesAdapter.RecyclerViewOnClickListener listener;
     Toolbar toolbar;
     @Override
@@ -76,18 +86,54 @@ MoviesAdapter.RecyclerViewOnClickListener listener;
         searchView.setQueryHint("Enter Movie Name...");
         menuItem.setActionView(searchView);
         menuItem.expandActionView();
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+        Observable.create(new ObservableOnSubscribe<Object>() {
             @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
+            public void subscribe(@NonNull ObservableEmitter<Object> emitter) throws Throwable {
+                searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                    @Override
+                    public boolean onQueryTextSubmit(String query) {
+                        return false;
+                    }
 
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                moviesViewModel.getMovies(newText);
-                return true;
+                    @Override
+                    public boolean onQueryTextChange(String newText) {
+                        emitter.onNext(newText);
+
+                        return true;
+                    }
+                });
             }
-        });
+        }).debounce(2, TimeUnit.SECONDS)
+                .distinctUntilChanged()
+                .filter(f->!f.toString().equals(""))
+                .subscribe(new io.reactivex.rxjava3.core.Observer<Object>() {
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
+                        compositeDisposable.add(d);
+                    }
+
+                    @Override
+                    public void onNext(@NonNull Object o) {
+                    moviesViewModel.searchMovies(o.toString());
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        compositeDisposable.clear();
     }
 }

@@ -1,4 +1,4 @@
-package com.example.myapplication.ui;
+package com.example.myapplication.ui.Activities;
 
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -6,6 +6,7 @@ import android.widget.Button;
 
 import com.example.myapplication.R;
 import com.example.myapplication.model.User;
+import com.example.myapplication.ui.ViewModels.RegisterViewModel;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 
